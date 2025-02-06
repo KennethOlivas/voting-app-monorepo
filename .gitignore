@@ -1,0 +1,11 @@
+# Node modules
+node_modules/
+
+# Archivos de compilación
+dist/
+
+# Archivos de entorno
+.env
+
+# Otros archivos o carpetas que no quieras versionar
+.DS_Store

@@ -9,3 +9,5 @@ dist/
 
 # Otros archivos o carpetas que no quieras versionar
 .DS_Store
+
+apps/frontend/.next/

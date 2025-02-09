@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "pnpm -r run dev",
     "build": "pnpm -r run build",
-    "start": "pnpm -r run start"
+    "start": "pnpm -r run start",
+    "front:dev": "pnpm --filter frontend dev",
+    "back:dev": "pnpm --filter backend start:dev"
   },
   "keywords": [],
   "author": "",

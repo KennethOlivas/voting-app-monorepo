@@ -8,9 +8,28 @@
     "build": "pnpm -r run build",
     "start": "pnpm -r run start",
     "front:dev": "pnpm --filter frontend dev",
-    "back:dev": "pnpm --filter backend start:dev"
+    "back:dev": "pnpm --filter backend start:dev",
+    "lint": "pnpm lint:frontend && pnpm lint:backend",
+    "lint:frontend": "pnpm --filter frontend lint",
+    "lint:backend": "pnpm --filter backend lint",
+    "lint:fix": "pnpm lint --fix",
+    "format": "pnpm format:frontend && pnpm format:backend",
+    "format:frontend": "pnpm --filter frontend prettier --check .",
+    "format:backend": "pnpm --filter backend prettier --check .",
+    "format:fix": "pnpm format --write",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "eslint": "^9.20.1",
+    "lint-staged": "^15.4.3",
+    "prettier": "^3.4.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
+    "husky": "^9.1.7"
+  }
 }

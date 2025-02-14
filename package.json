@@ -17,7 +17,9 @@
     "format:frontend": "pnpm --filter frontend prettier --check .",
     "format:backend": "pnpm --filter backend prettier --check .",
     "format:fix": "pnpm format --write",
-    "prepare": "husky"
+    "prepare": "husky", 
+    "release": "semantic-release"
+
   },
   "keywords": [],
   "author": "",

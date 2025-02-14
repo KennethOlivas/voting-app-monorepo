@@ -1,0 +1,195 @@
+{
+  "branches": [
+    "master"
+  ],
+  "plugins": [
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        "preset": "conventionalcommits",
+        "parserOpts": {
+          "headerPattern": "^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)\\((frontend|backend|cli)\\):\\s(.+)$",
+          "headerCorrespondence": [
+            "type",
+            "scope",
+            "subject"
+          ],
+          "noteKeywords": [
+            "BREAKING CHANGE"
+          ]
+        },
+        "releaseRules": [
+          {
+            "type": "feat",
+            "scope": "frontend",
+            "release": "minor"
+          },
+          {
+            "type": "feat",
+            "scope": "backend",
+            "release": "minor"
+          },
+          {
+            "type": "feat",
+            "scope": "cli",
+            "release": "minor"
+          },
+          {
+            "type": "fix",
+            "scope": "frontend",
+            "release": "patch"
+          },
+          {
+            "type": "fix",
+            "scope": "backend",
+            "release": "patch"
+          },
+          {
+            "type": "fix",
+            "scope": "cli",
+            "release": "patch"
+          },
+          {
+            "type": "docs",
+            "scope": "frontend",
+            "release": false
+          },
+          {
+            "type": "docs",
+            "scope": "backend",
+            "release": false
+          },
+          {
+            "type": "docs",
+            "scope": "cli",
+            "release": false
+          },
+          {
+            "type": "style",
+            "scope": "frontend",
+            "release": false
+          },
+          {
+            "type": "style",
+            "scope": "backend",
+            "release": false
+          },
+          {
+            "type": "style",
+            "scope": "cli",
+            "release": false
+          },
+          {
+            "type": "refactor",
+            "scope": "frontend",
+            "release": "patch"
+          },
+          {
+            "type": "refactor",
+            "scope": "backend",
+            "release": "patch"
+          },
+          {
+            "type": "refactor",
+            "scope": "cli",
+            "release": "patch"
+          },
+          {
+            "type": "perf",
+            "scope": "frontend",
+            "release": "patch"
+          },
+          {
+            "type": "perf",
+            "scope": "backend",
+            "release": "patch"
+          },
+          {
+            "type": "perf",
+            "scope": "cli",
+            "release": "patch"
+          },
+          {
+            "type": "test",
+            "scope": "frontend",
+            "release": false
+          },
+          {
+            "type": "test",
+            "scope": "backend",
+            "release": false
+          },
+          {
+            "type": "test",
+            "scope": "cli",
+            "release": false
+          },
+          {
+            "type": "build",
+            "scope": "frontend",
+            "release": "patch"
+          },
+          {
+            "type": "build",
+            "scope": "backend",
+            "release": "patch"
+          },
+          {
+            "type": "build",
+            "scope": "cli",
+            "release": "patch"
+          },
+          {
+            "type": "ci",
+            "scope": "frontend",
+            "release": false
+          },
+          {
+            "type": "ci",
+            "scope": "backend",
+            "release": false
+          },
+          {
+            "type": "ci",
+            "scope": "cli",
+            "release": false
+          },
+          {
+            "type": "chore",
+            "scope": "frontend",
+            "release": false
+          },
+          {
+            "type": "chore",
+            "scope": "backend",
+            "release": false
+          },
+          {
+            "type": "chore",
+            "scope": "cli",
+            "release": false
+          },
+          {
+            "type": "revert",
+            "scope": "frontend",
+            "release": "patch"
+          },
+          {
+            "type": "revert",
+            "scope": "backend",
+            "release": "patch"
+          },
+          {
+            "type": "revert",
+            "scope": "cli",
+            "release": "patch"
+          }
+        ]
+      }
+    ],
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/git",
+    "@semantic-release/github"
+  ]
+}

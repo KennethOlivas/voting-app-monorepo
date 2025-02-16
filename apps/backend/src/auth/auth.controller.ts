@@ -9,7 +9,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { LoginUserDto } from '@voting-app/schemas';
+import { LoginUserDto } from './dto/login-user.dto';
 import { AuthGuard, Public } from './auth.guard';
 
 @Controller('auth')

@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/KennethOlivas/voting-app-monorepo/compare/v1.0.0...v1.1.0) (2025-02-16)
+
+
+### Features
+
+* **frontend:** restructure frontend components, add new UI elements and dashboard ([#12](https://github.com/KennethOlivas/voting-app-monorepo/issues/12)) ([0295069](https://github.com/KennethOlivas/voting-app-monorepo/commit/02950694f98fb12783e4a9b4003ffcd7654e0e63))
+
 # 1.0.0 (2025-02-14)
 
 

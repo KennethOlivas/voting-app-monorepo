@@ -43,7 +43,12 @@
       "@/context/*": [
         "src/context/*"
       ],
-      
+      "@/auth": [
+        "src/auth"
+      ],
+      "@voting-app/schemas": [
+        "../../packages/schemas/src"
+      ]
     }
   },
   "include": [

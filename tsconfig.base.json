@@ -2,7 +2,10 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-     
-    }
+      "@voting-app/schemas": [
+        "./packages/schemas/src"
+      ]
+    },
   }
 }
+

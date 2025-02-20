@@ -1,9 +1,6 @@
-
-import Dashboard from '@/components/features/dashboard'
-
-
-export default function dashboard() {
+export default async function Page() {
   return (
-    <Dashboard />
-  );
+    <>
+    </>
+  )
 }

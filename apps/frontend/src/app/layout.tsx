@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { SidebarProvider } from "@/components/ui/sidebar";
-import { SearchProvider } from "@/context/search-context";
-import SkipToMain from "@/components/skip-to-main";
-import { AppSidebar } from "@/components/layout/app-sidebar";
-import { cn } from "@/lib/utils";
 import ThemeProvider from "@/context/theme-context";
 import { FontProvider } from "@/context/font-context";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,35 +26,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <ThemeProvider defaultTheme='light' storageKey='vite-ui-theme'>
-          <FontProvider>
-            <SearchProvider>
-              <SidebarProvider>
-                <SkipToMain />
-                <AppSidebar />
-                <div
-                  id='content'
-                  className={cn(
-                    'ml-auto w-full max-w-full',
-                    'peer-data-[state=collapsed]:w-[calc(100%-var(--sidebar-width-icon)-1rem)]',
-                    'peer-data-[state=expanded]:w-[calc(100%-var(--sidebar-width))]',
-                    'transition-[width] duration-200 ease-linear',
-                    'flex h-svh flex-col',
-                    'group-data-[scroll-locked=1]/body:h-full',
-                    'group-data-[scroll-locked=1]/body:has-[main.fixed-main]:h-svh'
-                  )}
-                >
-                  {children}
-                </div>
-              </SidebarProvider>
-            </SearchProvider>
-          </FontProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+    <ThemeProvider defaultTheme='light' storageKey='vite-ui-theme'>
+      <FontProvider>
+
+        <html lang="en">
+          <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          >
+            {children}
+            <Toaster />
+          </body>
+        </html >
+      </FontProvider>
+    </ThemeProvider>
   );
 }

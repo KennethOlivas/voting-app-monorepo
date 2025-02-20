@@ -1,6 +1,10 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": false,
     "target": "ES2017",
     "lib": [
       "dom",
@@ -25,26 +29,8 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/app/*": [
-        "src/app/*"
-      ],
-      "@/components/*": [
-        "src/components/*"
-      ],
-      "@/config/*": [
-        "src/config/*"
-      ],
-      "@/hooks/*": [
-        "src/hooks/*"
-      ],
-      "@/lib/*": [
-        "src/lib/*"
-      ],
-      "@/context/*": [
-        "src/context/*"
-      ],
-      "@/auth": [
-        "src/auth"
+      "@/*": [
+        "src/*"
       ],
       "@voting-app/schemas": [
         "../../packages/schemas/src"

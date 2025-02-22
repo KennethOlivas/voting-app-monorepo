@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { SearchProvider } from "@/context/search-context";
-import SkipToMain from "@/components/skip-to-main";
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import { cn } from "@/lib/utils";
 
@@ -19,7 +18,6 @@ export default function RootLayout({
 
     <SearchProvider>
       <SidebarProvider>
-        <SkipToMain />
         <AppSidebar />
         <div
           id='content'

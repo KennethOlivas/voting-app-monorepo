@@ -28,7 +28,6 @@ export default function RootLayout({
   return (
     <ThemeProvider defaultTheme='light' storageKey='vite-ui-theme'>
       <FontProvider>
-
         <html lang="en">
           <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}

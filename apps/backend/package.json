@@ -38,7 +38,8 @@
     "pg": "^8.13.3",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
-    "zod": "^3.24.2"
+    "zod": "^3.24.2",
+    "@voting-app/schemas": "workspace:*"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",

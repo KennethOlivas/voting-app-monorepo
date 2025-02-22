@@ -9,6 +9,7 @@
     "start": "pnpm -r run start",
     "front:dev": "pnpm --filter frontend dev",
     "back:dev": "pnpm --filter backend start:dev",
+    "build:schemas": "pnpm --filter @voting-app/schemas build",
     "lint": "pnpm lint:frontend && pnpm lint:backend",
     "lint:frontend": "pnpm --filter frontend lint",
     "lint:backend": "pnpm --filter backend lint",

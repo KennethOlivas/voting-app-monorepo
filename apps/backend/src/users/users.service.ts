@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 import { db } from 'src/db';
 import { users } from 'src/db/schema';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto } from '@voting-app/schemas';
 import * as bcrypt from 'bcryptjs';
 import { eq } from 'drizzle-orm';
 
@@ -12,15 +12,14 @@ export class UsersService {
     return await db.select().from(users);
   }
 
-  async create(data: CreateUserDto) {
-    const hashedPassword = await bcrypt.hash(data.password, 10);
+  async create({ email, name, password, role }: CreateUserDto) {
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     await db.insert(users).values({
-      name: data.name,
-      email: data.email,
+      name,
+      email,
       password: hashedPassword,
-      role: data.role,
-      createdAt: new Date(),
+      role,
     });
 
     return { message: 'User created successfully' };

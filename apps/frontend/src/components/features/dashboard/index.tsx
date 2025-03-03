@@ -45,7 +45,6 @@ const topNav = [
 ]
 
 const Dashboard = () => {
-
   return (
     <>
       {/* ===== Top Heading ===== */}
@@ -57,7 +56,6 @@ const Dashboard = () => {
           <ProfileDropdown />
         </div>
       </Header>
-
       {/* ===== Main ===== */}
       <Main>
         <div className='mb-2 flex items-center justify-between space-y-2'>

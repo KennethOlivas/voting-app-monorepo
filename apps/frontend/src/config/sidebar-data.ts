@@ -87,7 +87,7 @@ export const sidebarData: SidebarData = {
             },
             {
               title: "Voters",
-              url: "/voters",
+              url: "dashboard/admin/voters",
               icon: IconUserScan,
             },
           ],

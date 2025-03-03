@@ -41,7 +41,10 @@
     "@radix-ui/react-visually-hidden": "^1.1.2",
     "@shadcn/ui": "^0.0.4",
     "@tabler/icons-react": "^3.30.0",
+    "@tanstack/react-query": "^5.66.9",
     "@tanstack/react-table": "^8.20.6",
+    "@voting-app/schemas": "workspace:*",
+    "axios": "^1.7.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "1.0.0",
@@ -62,11 +65,11 @@
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^1.1.2",
-    "zod": "^3.24.1",
-    "@voting-app/schemas": "workspace:*"
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@tanstack/eslint-plugin-query": "^5.66.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

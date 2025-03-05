@@ -4,6 +4,8 @@ import "./globals.css";
 import ThemeProvider from "@/context/theme-context";
 import { FontProvider } from "@/context/font-context";
 import { Toaster } from "sonner";
+import { Providers } from "./providers";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,17 +28,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ThemeProvider defaultTheme='light' storageKey='vite-ui-theme'>
-      <FontProvider>
-        <html lang="en">
-          <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-          >
-            {children}
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <ThemeProvider defaultTheme='light' storageKey='vite-ui-theme'>
+          <FontProvider>
+            <Providers>
+              {children}
+            </Providers>
             <Toaster />
-          </body>
-        </html >
-      </FontProvider>
-    </ThemeProvider>
+          </FontProvider>
+        </ThemeProvider>
+      </body>
+    </html >
   );
 }

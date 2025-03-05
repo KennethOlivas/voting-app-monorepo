@@ -8,7 +8,7 @@
     "build": "pnpm -r run build",
     "start": "pnpm -r run start",
     "front:dev": "pnpm --filter frontend dev",
-    "back:dev": "pnpm --filter backend start:dev",
+    "back:dev": "pnpm --filter @voting-app/schemas build & pnpm --filter backend start:dev",
     "build:schemas": "pnpm --filter @voting-app/schemas build",
     "lint": "pnpm lint:frontend && pnpm lint:backend",
     "lint:frontend": "pnpm --filter frontend lint",
@@ -18,9 +18,8 @@
     "format:frontend": "pnpm --filter frontend prettier --check .",
     "format:backend": "pnpm --filter backend prettier --check .",
     "format:fix": "pnpm format --write",
-    "prepare": "husky", 
+    "prepare": "husky",
     "release": "semantic-release"
-
   },
   "keywords": [],
   "author": "",

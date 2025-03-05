@@ -16,7 +16,6 @@ export const voters = pgTable('voters', {
   lastName: varchar('last_name', { length: 255 }).notNull(),
   email: varchar('email', { length: 255 }).unique(),
   voterId: varchar('voter_id', { length: 255 }).unique().notNull(),
-  bornIn: varchar('born_in', { length: 255 }).notNull(),
   dateOfBirth: text('date_of_birth').notNull(),
   gender: varchar('gender').notNull(),
   city: varchar('city', { length: 255 }).notNull(),

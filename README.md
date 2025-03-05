@@ -1,10 +1,24 @@
 # Voting App Monorepo
 
+## About this project
+
 This project is a voting application structured as a monorepo. It uses ESLint and Prettier to maintain code quality and consistency, with Husky managing Git hooks for automated checks.
+
+The main goal of this application is to provide a platform for managing elections. The app has the following modules:
+
+- **users:** stores the information of admins and others.
+- **voters:** represents the people that can vote in the election.
+- **candidates:** represents the candidates of an election.
+- **elections:** defines the available elections.
+- **votes:** stores the votes casted in the elections.
+
+This project is using **TypeScript**, **Next.js** for the Frontend, **NestJS** for the backend and **JWT** for authentication.
 
 ## Project Structure
 
 - **apps/**: Contains the main applications of the project.
+- **apps/backend**: NestJS application files.
+- **apps/frontend**: NextJS application files.
 - **docker-compose.yml**: Configuration file for Docker Compose.
 - **package.json**: npm configuration file with dependencies and scripts.
 - **pnpm-workspace.yaml**: pnpm configuration for managing the monorepo.
@@ -35,13 +49,66 @@ This project is a voting application structured as a monorepo. It uses ESLint an
 
 ### Running the Application
 
-To start the application using Docker Compose:
+To start the database using Docker Compose:
 
 ```bash
 docker-compose up
+# or
+docker-compose up -D
 ```
 
-The application will be available at `http://localhost:5000` and results at `http://localhost:5001`.
+### Running the Backend
+**Make sure to create the .env in apps/backend following the .env.example file as a template**
+
+
+```bash
+pnpm --filter backend start:dev
+# or
+pnpm run front:dev
+```
+
+The application will be available at `http://localhost:3001`
+
+
+If you get any issues regarding zod or schemas, run the following command:
+```bash
+pnpm run build:schemas
+```
+
+#### Creating a test user
+Create the schema:
+
+```bash
+cd apps/backend
+npx drizzle-kit push
+pnpm --filter backend start:dev
+# or
+pnpm run back:dev
+```
+
+Now create a user in the users table through CLI or pgAdmin.
+For the user password in the database, use [this website](https://bcrypt-generator.com/) to generate a Bcrypt hash for the password.
+
+Now try to login sending a POST request to the /auth/login endpoint using the following body parameters:
+
+```javascript
+{
+  "email": "myEmail@gmail.com",
+  "password": "myPassword"
+}
+```
+
+You should get the access_token as a response from the server.
+
+### Running the Frontend
+
+To start the Frontend:
+
+```bash
+pnpm --filter frontend dev  
+```
+
+The application will be available at `http://localhost:3000`
 
 ### Linting and Formatting
 
@@ -58,6 +125,26 @@ This project uses ESLint for static code analysis and Prettier for code formatti
   ```bash
   pnpm format
   ```
+
+### Adding packages
+
+We are using pnpm workspaces, so you should install packages either per workspace or globally.
+
+**Worskpaces**
+- backend
+- frontend
+
+```bash
+pnpm add <package_name> --filter=<name_workspace>
+
+# Example
+pnpm add @clerk/nextjs --filter=frontend
+```
+
+**Globally**
+```bash
+pnpm add <package_name>  -w
+```
 
 ## Contributing
 

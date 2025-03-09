@@ -5,6 +5,8 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { PlusIcon } from 'lucide-react'
 import CreateVoterForm from './create-voter-form'
 import { useModal } from '@/hooks/use-modal'
+import QRInput from '../qr-input'
+
 
 const CreateVoter = () => {
   const { close, isOpen, onChange } = useModal()
@@ -15,12 +17,15 @@ const CreateVoter = () => {
           Add voter
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[825px]">
+      <DialogContent className="lg:max-w-screen-lg">
         <DialogHeader>
           <DialogTitle>A voter</DialogTitle>
-          <DialogDescription>
-            Add a voter to the list
-          </DialogDescription>
+          <div className="flex items-center justify-between space-x-2">
+            <DialogDescription>
+              Add a voter to the list
+            </DialogDescription>
+            <QRInput />
+          </div>
         </DialogHeader>
         <CreateVoterForm onSubmitFinished={close} />
       </DialogContent>

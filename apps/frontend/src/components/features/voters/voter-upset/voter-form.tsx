@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button"
 import { DatePicker } from "@/components/ui/date-picker"
-import { DialogFooter, DialogClose } from "@/components/ui/dialog"
 import {
   Form,
   FormControl,
@@ -18,24 +17,26 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { CreateVoterDto, CreateVoterSchema } from "@voting-app/schemas"
 import { useForm } from "react-hook-form"
 
-type CreateVoterFormProps = {
-  onSubmitFinished?: () => void
+type VoterFormProps = {
+  onCanel?: () => void
+  onSubmited?: () => void
+  editData?: CreateVoterDto
 }
 
-const CreateVoterForm = ({ onSubmitFinished }: CreateVoterFormProps) => {
+const VoterForm = ({ onCanel, onSubmited, editData }: VoterFormProps) => {
   const { mutateAsync, isPending, isError } = useCreateVoter();
 
   const form = useForm<CreateVoterDto>({
     resolver: zodResolver(CreateVoterSchema),
     defaultValues: {
-      firstName: '',
-      middleName: '',
-      lastName: '',
-      voterId: '',
-      email: '',
-      dateOfBirth: '',
-      city: '',
-      gender: 'M',
+      firstName: editData?.firstName ?? '',
+      middleName: editData?.middleName ?? '',
+      lastName: editData?.lastName ?? '',
+      voterId: editData?.voterId ?? '',
+      email: editData?.email ?? '',
+      dateOfBirth: editData?.dateOfBirth ?? '',
+      city: editData?.city ?? '',
+      gender: editData?.gender ?? 'M',
     },
     mode: "onChange",
     criteriaMode: 'firstError',
@@ -43,9 +44,13 @@ const CreateVoterForm = ({ onSubmitFinished }: CreateVoterFormProps) => {
 
 
   const onSubmit = async (data: CreateVoterDto) => {
-    await mutateAsync(data)
-    if (isError) return
-    onSubmitFinished?.()
+    if (editData) {
+      console.log('editData', data)
+    } else {
+      await mutateAsync(data)
+      if (isError) return
+    }
+    onSubmited?.()
   }
 
   return (
@@ -75,7 +80,7 @@ const CreateVoterForm = ({ onSubmitFinished }: CreateVoterFormProps) => {
                 <FormItem>
                   <FormLabel>Middle Name</FormLabel>
                   <FormControl>
-                    <Input  placeholder="Middle Name" {...field} value={field.value ?? ''} />
+                    <Input placeholder="Middle Name" {...field} value={field.value ?? ''} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -189,15 +194,17 @@ const CreateVoterForm = ({ onSubmitFinished }: CreateVoterFormProps) => {
             />
           </div>
         </div>
-        <DialogFooter className='flex w-full pt-4'>
-          <DialogClose asChild>
-            <Button isLoading={isPending} size="full" type='button' variant="destructive">Cancel</Button>
-          </DialogClose>
+        <div className='flex w-full pt-4 space-x-4'>
+          <Button
+            onClick={onCanel}
+            isLoading={isPending} size="full" type='button' variant="destructive">
+            Cancel
+          </Button>
           <Button isLoading={isPending} size="full" type="submit">Save</Button>
-        </DialogFooter>
+        </div>
       </form>
     </Form>
   )
 }
 
-export default CreateVoterForm
+export default VoterForm

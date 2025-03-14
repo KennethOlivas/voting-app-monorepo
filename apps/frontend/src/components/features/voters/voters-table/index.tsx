@@ -27,7 +27,7 @@ const VotersTable: FC = () => {
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
   const table: TableType<VoterDto> = useReactTable({
-    data: data ?? [],
+    data: data?.data ?? [],
     columns,
     onGlobalFilterChange: setGlobalFilter,
     onSortingChange: setSorting,

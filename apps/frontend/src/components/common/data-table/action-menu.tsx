@@ -18,19 +18,23 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useModal } from '@/hooks/use-modal';
 import { MoreHorizontal, SquarePen, Trash } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { type FC } from 'react';
 
 type ActionMenuProps = {
   handleDelete: () => void;
   descriptionDialog?: string;
   handleEdit?: () => void;
+  editPath?: string;
 };
 
 const ActionMenu: FC<ActionMenuProps> = ({
   handleDelete,
   descriptionDialog,
-  handleEdit,
+  editPath
 }) => {
+  const pathname = usePathname()
   const { close, isOpen, open } = useModal();
 
   const handleConfirm = () => {
@@ -70,9 +74,11 @@ const ActionMenu: FC<ActionMenuProps> = ({
             <Trash className="mr-2 h-4 w-4" />
             Delete
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={handleEdit}>
-            <SquarePen className="mr-2 h-4 w-4" />
-            Edit
+          <DropdownMenuItem asChild>
+            <Link href={`${pathname}/${editPath}`} prefetch={true}>
+              <SquarePen className="mr-2 h-4 w-4" />
+              Edit
+            </Link>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

@@ -138,29 +138,8 @@ export const columns: ColumnDef<VoterDto>[] = [
     id: 'actions',
     enableHiding: false,
     header: 'Actions',
-    cell: () => {
-      // // eslint-disable-next-line react-hooks/rules-of-hooks
-      // const { setMember, clearMember } = useMemberStore();
-      // const utils = api.useUtils();
-      // const { mutateAsync } = api.member.deleteMember.useMutation({
-      //   onSuccess: async () => {
-      //     await utils.member.getMembers.invalidate();
-      //   },
-      // });
-      // const member = row.original;
-
-      // const handleDelete = async () => {
-      //   await mutateAsync({
-      //     id: member.id,
-      //   });
-      // };
-
-      // const handleEdit = async () => {
-      //   await clearMember();
-      //   setMember(member);
-      // };
-
-      return <ActionMenu handleDelete={() => { }} handleEdit={() => { }} />;
+    cell: ({ row }) => {
+      return <ActionMenu handleDelete={() => { }} editPath={`/${row.original.id}`} />;
     },
   },
 ];

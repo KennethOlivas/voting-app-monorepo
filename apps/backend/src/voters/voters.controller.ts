@@ -1,14 +1,27 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { VotersService } from './voters.service';
 import { CreateVoterDto } from '@voting-app/schemas';
+import { voters } from 'src/db/schema';
 
 @Controller('voters')
 export class VotersController {
   constructor(private readonly votersService: VotersService) {}
 
   @Get()
-  async getVoters() {
-    return await this.votersService.findAll();
+  async getVoters(
+    @Query('page') page: string,
+    @Query('perPage') perPage: string,
+    @Query('search') search: string,
+    @Query('sortBy') sortBy: string,
+    @Query('sortDirection') sortDirection: string,
+  ) {
+    return await this.votersService.findAll(
+      parseInt(page, 10),
+      parseInt(perPage, 10),
+      search,
+      sortBy as keyof typeof voters,
+      sortDirection as 'ASC' | 'DESC',
+    );
   }
 
   @Post()

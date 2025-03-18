@@ -1,54 +1,25 @@
 'use client';
-
-import {
-  type GlobalFilterColumn,
-  type RowSelectionState,
-  type SortingState,
-  type Table as TableType,
-  type VisibilityState,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
-} from '@tanstack/react-table';
-import { type FC, useState } from 'react';
+import { type FC } from 'react';
 
 import { columns } from './columns';
 import Table from '@/components/common/data-table';
-import { VoterDto } from '@voting-app/schemas';
 import { useGetVoters } from '@/hooks/queries';
 import FilterAndAction from '@/components/common/data-table/filters-header-actions';
+import { useDataTable } from '@/hooks/use-data-table';
 
 const VotersTable: FC = () => {
-  const { data, isLoading } = useGetVoters();
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [globalFilter, setGlobalFilter] = useState<GlobalFilterColumn>();
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-  const table: TableType<VoterDto> = useReactTable({
+  const { data, isFetching } = useGetVoters();
+
+  const table = useDataTable({
+    pageCount: data?.totalPages ?? 0,
     data: data?.data ?? [],
     columns,
-    onGlobalFilterChange: setGlobalFilter,
-    onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    onColumnVisibilityChange: setColumnVisibility,
-    onRowSelectionChange: setRowSelection,
-    state: {
-      sorting,
-      columnVisibility,
-      rowSelection,
-      globalFilter,
-    },
-  });
+  })
 
   return (
     <Table
       table={table}
-      isLoading={isLoading}
+      isLoading={isFetching}
       header={<FilterAndAction table={table} />}
       data={data}
     />

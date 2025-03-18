@@ -4,11 +4,11 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Input } from '@/components/ui/input';
 import { ChevronDown } from 'lucide-react';
 import React, { JSX } from 'react';
 import { type Table } from '@tanstack/react-table';
 import { Button } from '@/components/ui/button';
+import { InputSearch } from './input-search';
 
 type Props<T extends object> = {
   table: Table<T>;
@@ -21,13 +21,8 @@ const FilterAndAction = <T extends object>({
 }: Props<T>): JSX.Element => {
   return (
     <section className="flex flex-wrap justify-start space-x-0 space-y-4 py-4 sm:justify-between sm:space-x-2 md:flex-nowrap md:space-y-0">
-      <Input
-        placeholder="Search..."
-        onChange={(event) => table.setGlobalFilter(event.target.value)}
-        className="w-full sm:max-w-sm"
-      ></Input>
+      <InputSearch table={table} />
       <div className="flex space-x-4">
-        {/* <DeleteManyButton table={table} /> */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="w-full sm:w-auto">

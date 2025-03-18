@@ -12,35 +12,23 @@ type Props<T extends object> = {
 };
 
 const TableBody = <T extends object>({ isLoading, table }: Props<T>) => {
-  if (isLoading) {
-    return (
-      <TableBodyUI>
-        {table.getRowModel().rows.map((row) => (
-          <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
-            {row.getVisibleCells().map((cell) => (
-              <TableCell key={cell.id}>
-                <div className="flex-row-reverse space-y-2">
-                  <Skeleton className="h-4 w-full rounded-md" />
-                  <Skeleton className="h-4 w-3/4 rounded-md" />
-                </div>
-              </TableCell>
-            ))}
-          </TableRow>
-        ))}
-      </TableBodyUI>
-    );
-  }
-
   return (
     <TableBodyUI>
-      {table.getRowModel().rows?.length ? (
+      { table.getRowModel().rows?.length ? (
         table.getRowModel().rows.map((row) => (
-          <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
-            {row.getVisibleCells().map((cell) => (
-              <TableCell key={cell.id}>
-                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+          <TableRow key={ row.id } data-state={ row.getIsSelected() && 'selected' }>
+            { row.getVisibleCells().map((cell) => (
+              <TableCell key={ cell.id }>
+                { isLoading ? (
+                  <div className="flex-row-reverse space-y-2">
+                    <Skeleton className="h-4 w-full rounded-md" />
+                    <Skeleton className="h-4 w-3/4 rounded-md" />
+                  </div>
+                ) : (
+                  flexRender(cell.column.columnDef.cell, cell.getContext())
+                ) }
               </TableCell>
-            ))}
+            )) }
           </TableRow>
         ))
       ) : (
@@ -49,7 +37,7 @@ const TableBody = <T extends object>({ isLoading, table }: Props<T>) => {
             No results.
           </TableCell>
         </TableRow>
-      )}
+      ) }
     </TableBodyUI>
   );
 };
